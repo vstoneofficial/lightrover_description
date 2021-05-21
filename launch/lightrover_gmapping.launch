@@ -14,12 +14,12 @@ roslauchを使ってGazebo上でライトローバーを起動してから使用
   <node pkg="gmapping" type="slam_gmapping" name="mapper">
     <param name="base_frame" value="base_footprint"/>
     <param name="odom_frame" value="odom"/>
-    <param name="maxUrange" value="10.0" type="double" />
-    <param name="delta" value="0.05" />
-    <param name="xmax" value="50" type="double" />
-    <param name="ymax" value="50" type="double" />
-    <param name="xmin" value="-50" type="double" />
-    <param name="ymin" value="-50" type="double" />
+    <param name="maxUrange" value="8.0" type="double" />
+    <param name="delta" value="0.03" />
+    <param name="xmax" value="30" type="double" />
+    <param name="ymax" value="30" type="double" />
+    <param name="xmin" value="-30" type="double" />
+    <param name="ymin" value="-30" type="double" />
   </node>
 
   <!-- rviz(視覚化ツール) -->
