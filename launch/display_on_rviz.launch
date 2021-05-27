@@ -1,5 +1,5 @@
 <!--
-  Display the lightrover gazebo model to rviz
+
 -->
 <launch>
   <!-- arguments -->
