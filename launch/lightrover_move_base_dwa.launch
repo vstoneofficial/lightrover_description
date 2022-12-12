@@ -5,7 +5,7 @@
 <launch>
 
   <!-- mapサーバー -->
-  <arg name="map_file" default="$(find lightrover_ros)/map/test.yaml"/>　<!--マップファイルのパスの指定 -->
+  <arg name="map_file" default="$(find lightrover_ros)/map/test_map.yaml"/>　<!--マップファイルのパスの指定 -->
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 
   <!--

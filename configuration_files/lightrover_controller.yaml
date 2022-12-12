@@ -1,4 +1,4 @@
-lightrover:
+lightrover:  
   joint_state_controller:
     type: joint_state_controller/JointStateController
     publish_rate: 50
@@ -25,3 +25,9 @@ lightrover:
 
     # Base frame_id
     base_frame_id: base_footprint #default: base_footprint
+
+  gazebo_ros_control/pid_gains:
+    left_wheel_joint: {p: 0.0001, i: 0.5, d: 0.0000001, i_clamp_min: -1.0, i_clamp_max: 1.0}
+    right_wheel_joint: {p: 0.0001, i: 0.5, d: 0.0000001, i_clamp_min: -1.0, i_clamp_max: 1.0}
+
+      

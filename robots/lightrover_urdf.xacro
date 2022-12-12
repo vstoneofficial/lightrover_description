@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="fourth_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="lightrover" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:include filename="$(find lightrover_description)/urdf/common.xacro"/>
   <xacro:include filename="$(find lightrover_description)/urdf/base/base_urdf.xacro"/>

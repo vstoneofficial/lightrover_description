@@ -6,7 +6,7 @@
 
   <xacro:macro name="lidar" params="prefix parent *joint_origin">
 		<joint name="${prefix}_lidar_joint" type="fixed">
-	  	<insert_block name="joint_origin"/>
+	  	<xacro:insert_block name="joint_origin"/>
 	  	<parent link="${parent}"/>
 	  	<child link="lidar_link"/>
 		</joint>
