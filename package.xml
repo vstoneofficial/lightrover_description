@@ -1,38 +1,25 @@
 <?xml version="1.0"?>
-<package format="2">
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
   <name>lightrover_description</name>
-  <version>0.1.0</version>
-  <description>The lightrover description package for gazebo</description>
+  <version>0.0.0</version>
 
+  <description>3D models of the Megarover 3.0 for simulation and visualization</description>
   <maintainer email="infodesk@vstone.co.jp">Vstone Infodesk</maintainer>
 
   <license>MIT</license>
 
-  <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>actionlib_msgs</build_depend>
-  <build_depend>control_msgs</build_depend>
-  <build_depend>controller_manager</build_depend>
-  <build_depend>geometry_msgs</build_depend>
-  <build_depend>robot_state_publisher</build_depend>
-  <build_depend>sensor_msgs</build_depend>
-  <build_depend>std_msgs</build_depend>
-  <build_export_depend>actionlib_msgs</build_export_depend>
-  <build_export_depend>control_msgs</build_export_depend>
-  <build_export_depend>controller_manager</build_export_depend>
-  <build_export_depend>geometry_msgs</build_export_depend>
-  <build_export_depend>robot_state_publisher</build_export_depend>
-  <build_export_depend>sensor_msgs</build_export_depend>
-  <build_export_depend>std_msgs</build_export_depend>
-  <exec_depend>actionlib_msgs</exec_depend>
-  <exec_depend>control_msgs</exec_depend>
-  <exec_depend>controller_manager</exec_depend>
-  <exec_depend>geometry_msgs</exec_depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <exec_depend>joint_state_publisher</exec_depend>
+  <exec_depend>joint_state_publisher_gui</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
-  <exec_depend>sensor_msgs</exec_depend>
-  <exec_depend>std_msgs</exec_depend>
-	<exec_depend>lightrover_ros</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>xacro</exec_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
 
   <export>
-
+    <build_type>ament_cmake</build_type>
+    <gazebo_ros gazebo_model_path="${prefix}/.."/>
   </export>
 </package>

@@ -8,10 +8,10 @@
 		<joint name="${prefix}_lidar_joint" type="fixed">
 	  	<xacro:insert_block name="joint_origin"/>
 	  	<parent link="${parent}"/>
-	  	<child link="lidar_link"/>
+	  	<child link="laser_frame"/>
 		</joint>
 
-		<link name="lidar_link"/>
+		<link name="laser_frame"/>
 
   </xacro:macro>
 

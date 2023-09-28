@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   
   <xacro:macro name="lidar_gazebo" params="prefix min_rad max_rad min_range max_range">
-	<gazebo reference="lidar_link">
+	<gazebo reference="laser_frame">
       <sensor type="ray" name="${prefix}_lidar_sensor">
 		<pose>0 0 0 0 0 0</pose>
 		<visualize>true</visualize>
@@ -29,7 +29,7 @@
 		</ray>
 		<plugin name="gazebo_ros_${prefix}_lidar_controller" filename="libgazebo_ros_laser.so">
           <topicName>/scan</topicName>
-          <frameName>lidar_link</frameName>
+          <frameName>laser_frame</frameName>
 		</plugin>
       </sensor>
 	</gazebo>
