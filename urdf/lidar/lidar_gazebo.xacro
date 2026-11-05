@@ -1,37 +1,41 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  
+
+  <!--
+    YDLIDAR X2 相当の2D LiDAR (Gazebo Harmonic の gpu_lidar)。
+    gz トピック /scan を ros_gz_bridge で ROS の /scan (frame: laser_frame) に中継する。
+  -->
   <xacro:macro name="lidar_gazebo" params="prefix min_rad max_rad min_range max_range">
-	<gazebo reference="lidar_link">
-      <sensor type="ray" name="${prefix}_lidar_sensor">
-		<pose>0 0 0 0 0 0</pose>
-		<visualize>true</visualize>
-		<update_rate>12</update_rate>
-		<ray>
+    <gazebo reference="laser_frame">
+      <sensor type="gpu_lidar" name="${prefix}_lidar_sensor">
+        <pose>0 0 0 0 0 0</pose>
+        <topic>/scan</topic>
+        <gz_frame_id>laser_frame</gz_frame_id>
+        <always_on>true</always_on>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <lidar>
           <scan>
-			<horizontal>
-              <samples>400</samples>
+            <horizontal>
+              <samples>360</samples>
               <resolution>1</resolution>
               <min_angle>${min_rad}</min_angle>
               <max_angle>${max_rad}</max_angle>
-			</horizontal>
+            </horizontal>
           </scan>
           <range>
-			<min>${min_range}</min>
-			<max>${max_range}</max>
-			<resolution>0.01</resolution>
+            <min>${min_range}</min>
+            <max>${max_range}</max>
+            <resolution>0.01</resolution>
           </range>
           <noise>
-			<type>gaussian</type>
-			<mean>0.0</mean>
-			<stddev>0.03</stddev>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
           </noise>
-		</ray>
-		<plugin name="gazebo_ros_${prefix}_lidar_controller" filename="libgazebo_ros_laser.so">
-          <topicName>/scan</topicName>
-          <frameName>lidar_link</frameName>
-		</plugin>
+        </lidar>
       </sensor>
-	</gazebo>
+    </gazebo>
   </xacro:macro>
+
 </robot>

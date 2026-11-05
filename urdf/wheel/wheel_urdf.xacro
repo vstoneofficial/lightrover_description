@@ -2,11 +2,11 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:include filename="$(find lightrover_description)/urdf/common.xacro"/>
-  <xacro:include filename="$(find lightrover_description)/urdf/wheel/wheel_transmission.xacro"/>
   <xacro:include filename="$(find lightrover_description)/urdf/wheel/wheel_gazebo.xacro"/>
 
   <xacro:property name="wheel_radius" value="0.03"/>
   <xacro:property name="wheel_length" value="0.005"/>
+  <!-- 実機の車輪1個あたりの質量 [kg] -->
   <xacro:property name="wheel_mass" value="0.0135"/>
 
   <xacro:macro name="wheel" params="prefix parent *origin *axis">
@@ -15,6 +15,7 @@
       <xacro:insert_block name="axis"/>
       <parent link="${parent}"/>
       <child link="${prefix}_wheel_link"/>
+      <dynamics damping="0.0" friction="0.0"/>
     </joint>
 
     <link name="${prefix}_wheel_link">
@@ -29,13 +30,18 @@
           <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
         </geometry>
       </collision>
+      <!--
+        慣性はCAD値。回転軸(リンク座標のy軸)に軸方向の値 7.02e-6 が乗るように並べ直した。
+        (ROS1版は origin の rpy="-pi/2 0 0" で軸方向の値がx軸に乗っていた)
+      -->
       <inertial>
-        <origin xyz="0 0 0" rpy="-${M_PI/2} 0 0"/>
-				<mass value="2.0"/>
-        <inertia ixx="7.0238032e-6" ixy="0.0" ixz="-8.4978788e-11" iyy="3.5665783e-6" iyz="-2.2592014e-12" izz="3.5673196e-6"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="${wheel_mass}"/>
+        <inertia ixx="3.5665783e-6" ixy="0.0" ixz="0.0"
+                 iyy="7.0238032e-6" iyz="0.0"
+                 izz="3.5673196e-6"/>
       </inertial>
     </link>
   </xacro:macro>
 
 </robot>
-      

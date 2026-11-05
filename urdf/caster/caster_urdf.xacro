@@ -3,6 +3,13 @@
 
   <xacro:include filename="$(find lightrover_description)/urdf/caster/caster_gazebo.xacro"/>
 
+  <!--
+    キャスターは摩擦0の球で近似した接地点。見た目は base_link のメッシュに含まれる。
+    質量はボールキャスター相当の 0.005 kg (ROS1版は 0.05 kg)。
+  -->
+  <xacro:property name="caster_radius" value="0.01"/>
+  <xacro:property name="caster_mass" value="0.005"/>
+
   <xacro:macro name="caster" params="parent *joint_origin">
     <joint name="caster_joint" type="fixed">
       <xacro:insert_block name="joint_origin"/>
@@ -13,17 +20,17 @@
     <link name="caster_link">
       <collision>
         <geometry>
-          <sphere radius="0.01"/>
+          <sphere radius="${caster_radius}"/>
         </geometry>
       </collision>
       <inertial>
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        <mass value="0.05"/>
-        <inertia ixx="0.000001" ixy="0.0" ixz="0.0" iyy="0.000001" iyz="0.0" izz="0.000001"/>
+        <mass value="${caster_mass}"/>
+        <inertia ixx="${2.0/5.0*caster_mass*caster_radius*caster_radius}" ixy="0.0" ixz="0.0"
+                 iyy="${2.0/5.0*caster_mass*caster_radius*caster_radius}" iyz="0.0"
+                 izz="${2.0/5.0*caster_mass*caster_radius*caster_radius}"/>
       </inertial>
-
     </link>
+  </xacro:macro>
 
-
-  </xacro:macro>  
 </robot>
